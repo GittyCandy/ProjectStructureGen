@@ -6,12 +6,6 @@ const fs = require('fs');
 const csv = require('csv-parser');
 
 const AdminDashBoardRoute = require('./Routes/AdminDashBoardRoute.js');
-const AdminManagementRoute = require('./Routes/AdminManagementRoute.js');
-const InfoLogsRoute = require('./Routes/InfoLogsRoute.js');
-const ConfigureRoute = require('./Routes/ConfigureRoute.js');
-
-const NotFoundRoute = require('./Routes/404Route.js');
-
 
 const { logFileMiddleware, dataMiddleware } = require('./MiddleWares/FileMiddleWare.js'); // Modularized middlewares
 const upload = require('./MiddleWares/UploadMiddleWare.js');
@@ -21,7 +15,7 @@ const upload = require('./MiddleWares/UploadMiddleWare.js');
 
 // Create an Express app
 const app = express();
-const port = 3030;
+const port = 3040;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -43,12 +37,6 @@ app.use('/upload', upload);
 
 // Routes
 app.use("/Admin_Dashboard", AdminDashBoardRoute);
-app.use("/Admin_Management", AdminManagementRoute);
-app.use("/Info_Logs", InfoLogsRoute);
-app.use("/Configure", ConfigureRoute);
-
-app.use('*', NotFoundRoute);
-
 
 app.listen(port, () => {
     console.clear();
